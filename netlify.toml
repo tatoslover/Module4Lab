@@ -1,0 +1,27 @@
+[build]
+  publish = "."
+  command = ""
+
+# Handle 404 errors by redirecting to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Force all paths to https
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
+
+# Set cache control headers for static assets
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
